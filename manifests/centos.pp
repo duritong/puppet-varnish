@@ -1,4 +1,4 @@
-class varnish::centos {
+class varnish::centos inherits varnish::base {
 
   file{'/etc/sysconfig/varnish':
     source => [
