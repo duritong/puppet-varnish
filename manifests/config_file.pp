@@ -11,7 +11,7 @@ define varnish::config_file(
       notify  => Exec['varnish_reload_vcl'],
       before  => Service['varnish'],
       owner   => root,
-      group   => 0,
-      mode    => '0640';
+      group   => 'varnish',
+      mode    => '0644';
   }
 }

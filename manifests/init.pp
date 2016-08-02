@@ -1,13 +1,12 @@
+# manage varnish
 class varnish(
-  $manage_munin = false
+  $manage_munin   = false,
+  $default_config = true,
 ) {
-  
-  case $::operatingsystem {
-    centos: { include varnish::centos }  
-    default: { include varnish::base }
-  }
+
+  include ::varnish::base
 
   if $manage_munin {
-    include varnish::munin
+    include ::varnish::munin
   }
 }
