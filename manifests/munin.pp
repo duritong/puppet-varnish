@@ -13,7 +13,7 @@ class varnish::munin {
   munin::plugin{$aspects: }
   if versioncmp($operatingsystemmajrelease,'7') >= 0 {
     Munin::Plugin[$aspects]{
-      ensure => 'varnish_',
+      ensure => 'varnish_'
     }
   } else {
     munin::plugin::deploy{
@@ -22,7 +22,7 @@ class varnish::munin {
         register => false,
     } -> Munin::Plugin[$aspects]{
       ensure => 'varnish4_',
-      config => 'group varnish',
+      config => 'group varnish'
     }
   }
 }
