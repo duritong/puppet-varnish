@@ -10,19 +10,20 @@ class varnish::munin {
     'varnish_threads',
     'varnish_backend_traffic' ]
 
-  munin::plugin{$aspects: }
   if versioncmp($operatingsystemmajrelease,'7') >= 0 {
-    Munin::Plugin[$aspects]{
-      ensure => 'varnish_'
+    munin::plugin{
+      $aspects:
+        ensure => 'varnish_',
     }
   } else {
     munin::plugin::deploy{
-      'varnish4':
+      'varnish4_':
         source   => 'varnish/munin/varnish4_',
         register => false,
-    } -> Munin::Plugin[$aspects]{
-      ensure => 'varnish4_',
-      config => 'group varnish'
+    } -> munin::plugin{
+      $aspects:
+        ensure => 'varnish4_',
+        config => 'group varnish',
     }
   }
 }
