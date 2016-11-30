@@ -11,11 +11,6 @@ class varnish::munin {
     'varnish_backend_traffic' ]
 
   if versioncmp($operatingsystemmajrelease,'7') >= 0 {
-    munin::plugin{
-      $aspects:
-        ensure => 'varnish_',
-    }
-  } else {
     munin::plugin::deploy{
       'varnish4_':
         source   => 'varnish/munin/varnish4_',
@@ -24,6 +19,11 @@ class varnish::munin {
       $aspects:
         ensure => 'varnish4_',
         config => 'group varnish',
+    }
+  } else {
+    munin::plugin{
+      $aspects:
+        ensure => 'varnish_',
     }
   }
 }
